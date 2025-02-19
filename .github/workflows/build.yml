@@ -7,7 +7,7 @@ concurrency:
 on:
   workflow_call:
     secrets:
-      MY_APP_ID:
+      APP_ID:
         required: true
 
 jobs:
@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - name: Install JDK
@@ -127,7 +127,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 120
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -169,7 +169,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 120
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -215,7 +215,7 @@ jobs:
     runs-on: windows-2019
     timeout-minutes: 120
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -247,7 +247,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -379,7 +379,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - name: Install JDK
@@ -422,7 +422,7 @@ jobs:
     runs-on: macos-13 # Rendering test on ios simulator need macos 13+
     timeout-minutes: 60
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v2
@@ -449,7 +449,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 120
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -476,7 +476,7 @@ jobs:
     runs-on: windows-2019
     timeout-minutes: 120
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
@@ -505,7 +505,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      TEST_APP_ID: ${{ secrets.MY_APP_ID }}
+      TEST_APP_ID: ${{ secrets.APP_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
