@@ -31,7 +31,7 @@ jobs:
     needs: check_permission
     # If the PR requested by a external contributor, the secrets.APP_ID should be empty, and skip this workflow
     if: ${{ needs.check_permission.outputs.is_schedule_run_ci == 1 }}
-    uses: ./.github/workflows/build.yml
+    uses: ./.github/workflows/run_test.yml
     secrets:
       APP_ID: ${{ secrets.APP_ID }}
             

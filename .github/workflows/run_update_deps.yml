@@ -18,8 +18,8 @@ on:
         type: string
         required: true
         default: ''
-      run_code_gen:
-        description: 'Whether to run code generation, default is false'
+      run_gen_code:
+        description: 'Whether to run gen code, default is false'
         type: boolean
         required: false
         default: false
@@ -141,24 +141,14 @@ jobs:
           # Update pub version into pubspec.yaml
           sed -i '' "s/version: .*/version: ${{ inputs.pub_version }}/" pubspec.yaml
 
-      - name: Setup Flutter
-        if: ${{ inputs.run_code_gen == true }}
-        uses: subosito/flutter-action@v2
+      - name: Run gen code
+        if: ${{ inputs.run_gen_code == true }}
+        uses: ./.github/actions/gen_code
         with:
-          channel: ${{ inputs.flutter_channel }}
-          flutter-version: ${{ inputs.flutter_version }}
-
-      - name: Run code generation
-        if: ${{ inputs.run_code_gen == true }}
-        uses: AgoraIO-Extensions/actions/.github/actions/generate@main
-        with:
-          generate-code: true
-          generate-comment: false
-          working-directory: ./
-          generate-code-command: |
-            corepack enable && bash scripts/code_gen.sh ${{ inputs.code_gen_public_headers }}
-          generate-comment-command: ""
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          code_gen_public_headers: ${{ inputs.code_gen_public_headers }}
+          flutter_channel: ${{ inputs.flutter_channel }}
+          flutter_version: ${{ inputs.flutter_version }}
+          working_directory: ./
 
 
       - name: Commit and create pull request

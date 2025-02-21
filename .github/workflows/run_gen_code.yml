@@ -1,4 +1,4 @@
-name: Run code gen
+name: Run gen code
 
 on:
   workflow_dispatch:
@@ -78,22 +78,13 @@ jobs:
 
           echo "final_target_branch=${final_target_branch}" >> $GITHUB_OUTPUT
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - name: Run gen code
+        uses: ./.github/actions/gen_code
         with:
-          channel: ${{ inputs.flutter_channel }}
-          flutter-version: ${{ inputs.flutter_version }}
-
-      - name: Run code generation
-        uses: AgoraIO-Extensions/actions/.github/actions/generate@main
-        with:
-          generate-code: true
-          generate-comment: false
-          working-directory: ./
-          generate-code-command: |
-            corepack enable && bash scripts/code_gen.sh ${{ inputs.code_gen_public_headers }}
-          generate-comment-command: ""
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          code_gen_public_headers: ${{ inputs.code_gen_public_headers }}
+          flutter_channel: ${{ inputs.flutter_channel }}
+          flutter_version: ${{ inputs.flutter_version }}
+          working_directory: ./
 
       - name: Commit and create pull request
         uses: peter-evans/create-pull-request@v4
