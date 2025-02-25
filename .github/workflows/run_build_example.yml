@@ -1,4 +1,4 @@
-name: Run build example
+name: 'run: build example'
 
 on:
   workflow_dispatch:
@@ -202,6 +202,7 @@ jobs:
         with:
           channel: ${{ inputs.flutter_channel }}
           flutter-version: ${{ inputs.flutter_version }}
+          cache: true
 
       - name: Build
         env:

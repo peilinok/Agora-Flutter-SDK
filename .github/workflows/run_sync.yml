@@ -1,4 +1,4 @@
-name: Run sync
+name: 'run: sync'
 
 on:
   workflow_dispatch:
