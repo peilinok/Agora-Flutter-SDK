@@ -77,6 +77,18 @@ on:
         default: '3.24.5'
 
 jobs:
+  # remove label ci:build_example if the issue_number is not null and the workflow is run by workflow_call not workflow_dispatch
+  remove-label:
+    if: ${{ inputs.issue_number != null && github.event_name == 'workflow_call' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove label
+        uses: actions/remove-labels@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ inputs.issue_number }}
+          labels: ci:build_example
+
   split-platforms:
     runs-on: ubuntu-latest
     outputs:
