@@ -22,7 +22,7 @@ jobs:
         id: check-contributors-result
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.LABEL_ACTION_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           debug: true
           script: |
             const org = "AgoraIO-Extensions"
@@ -65,10 +65,10 @@ jobs:
         if: ${{ github.event.action == 'synchronize' && steps.check-contributors-result.outputs.result > 0 }}
         uses: actions-ecosystem/action-remove-labels@v1
         with:
-          github_token: ${{ secrets.LABEL_ACTION_PAT }}
-          repo: 'AgoraIO-Extensions'
-          number: 'Agora-Flutter-SDK'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.pull_request.number }}
           labels: ci:schedule_run_ci
+          fail_on_error: false
 
   run_test:
     name: Run test

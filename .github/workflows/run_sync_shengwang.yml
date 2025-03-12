@@ -1,4 +1,4 @@
-name: 'run: sync'
+name: 'run: sync to shengwang'
 
 on:
   workflow_dispatch:
